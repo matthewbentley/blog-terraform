@@ -1,0 +1,12 @@
+Terraform files for my [blog](https://bentley.link/).
+
+Includes:
+- DNS setup for bentley.{link,blog}
+- DNS setup for fastmail MX for the same
+- s3 buckets for the site, staging site, and logs
+- Cloudfront distributions for the site and staging site
+
+Does not include:
+- Content for the site; see [here](https://github.com/matthewbentley/blog) for that
+- The `bentley_megacert`; that needs to be created (with the proper subdomains)
+ outside of tf
