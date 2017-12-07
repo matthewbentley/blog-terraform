@@ -2,6 +2,11 @@ resource "aws_route53_zone" "bentley_link" {
     name = "bentley.link"
 }
 
+resource "namecheap_ns" "bentley_link" {
+    domain = "bentley.link"
+    servers = ["${aws_route53_zone.bentley_link.name_servers}"]
+}
+
 module "blog_domain_bentley_link" "bentley_link" {
     source     = "./blog_domain"
     domain     = "bentley.link"
