@@ -146,3 +146,11 @@ resource "aws_route53_record" "submission" {
     records = ["0 1 587 smtp.fastmail.com"]
 }
 
+resource "aws_route53_record" "caa_amazon" {
+    zone_id = "${var.zone_id}"
+    name    = "${var.domain}"
+    type    = "CAA"
+    ttl     = "300"
+
+    records = ["0 issue \"amazon.com\""]
+}
