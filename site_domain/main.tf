@@ -12,6 +12,10 @@ variable "cert" {}
 
 variable "region" {}
 
+variable "lambda_functions" {
+    type = "list"
+}
+
 resource "aws_s3_bucket" "site" {
     bucket = "${var.name}"
     region = "${var.region}"
@@ -98,14 +102,7 @@ resource "aws_cloudfront_distribution" "site" {
         default_ttl            = 300
         max_ttl                = 1500
 
-        lambda_function_association {
-            event_type = "origin-request"
-            lambda_arn = "arn:aws:lambda:us-east-1:822323900684:function:bentley-link-save-comment:14"
-        }
-        lambda_function_association {
-            event_type = "viewer-response"
-            lambda_arn = "arn:aws:lambda:us-east-1:822323900684:function:add-resp-headers:9"
-        }
+        lambda_function_association = ["${var.lambda_functions}"]
     }
 
     price_class = "PriceClass_All"
