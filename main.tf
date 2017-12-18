@@ -117,7 +117,7 @@ module "staging_bentley_blog" {
         },
         {
             event_type = "viewer-response"
-            lambda_arn = "arn:aws:lambda:us-east-1:822323900684:function:add-resp-headers:9"
+            lambda_arn = "arn:aws:lambda:us-east-1:822323900684:function:add-resp-headers:14"
         }
     ]
 
@@ -144,7 +144,7 @@ module "bentley_blog" {
         },
         {
             event_type = "viewer-response"
-            lambda_arn = "arn:aws:lambda:us-east-1:822323900684:function:add-resp-headers:9"
+            lambda_arn = "arn:aws:lambda:us-east-1:822323900684:function:add-resp-headers:14"
         }
     ]
     
