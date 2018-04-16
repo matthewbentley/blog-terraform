@@ -2,6 +2,10 @@ variable "domain" {}
 
 variable "zone_id" {}
 
+variable "caa" {
+    default = "amazon.com"
+}
+
 resource "aws_route53_record" "mx" {
     zone_id = "${var.zone_id}"
     name    = "${var.domain}"
@@ -152,5 +156,5 @@ resource "aws_route53_record" "caa_amazon" {
     type    = "CAA"
     ttl     = "300"
 
-    records = ["0 issue \"amazon.com\""]
+    records = ["0 issue \"${var.caa}\""]
 }
