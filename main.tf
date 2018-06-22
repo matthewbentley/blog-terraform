@@ -243,3 +243,21 @@ resource "aws_route53_record" "mtb_wtf_jump" {
 
     records = ["people.acm.case.edu"]
 }
+
+resource "aws_route53_record" "kbp_mtb_wtf" {
+    zone_id = "${aws_route53_zone.mtb_wtf.zone_id}"
+    name    = "kbp.mtb.wtf"
+    type    = "CNAME"
+    ttl     = "300"
+
+    records = ["kbp.keybaseapi.com"]
+}
+
+resource "aws_route53_record" "kbp_mtb_wtf_txt" {
+    zone_id = "${aws_route53_zone.mtb_wtf.zone_id}"
+    name    = "_keybase_pages.kbp.mtb.wtf"
+    type    = "TXT"
+    ttl     = "300"
+
+    records = ["kbp=/keybase/private/bentley,kbpbot/my-site"]
+}
