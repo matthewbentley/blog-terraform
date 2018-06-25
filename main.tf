@@ -170,7 +170,7 @@ module "fastmail_domain_mtb_wtf" "mtb_wtf" {
     source  = "./fastmail_domain"
     domain  = "mtb.wtf"
     zone_id = "${aws_route53_zone.mtb_wtf.zone_id}"
-    caa     = "letsencrypt.org"
+    caa     = ["letsencrypt.org"]
 }
 
 resource "aws_route53_record" "mtb_wtf_a" {
@@ -260,4 +260,20 @@ resource "aws_route53_record" "kbp_mtb_wtf_txt" {
     ttl     = "300"
 
     records = ["kbp=/keybase/private/bentley,kbpbot/my-site"]
+}
+
+resource "aws_route53_zone" "catherine_science" {
+    name = "catherine.science"
+}
+
+resource "namecheap_ns" "catherine_science" {
+    domain = "catherine.science"
+    servers = ["${aws_route53_zone.catherine_science.name_servers}"]
+}
+
+module "fastmail_domain_catherine_science" "catherine_science" {
+    source  = "./fastmail_domain"
+    domain  = "catherine.science"
+    zone_id = "${aws_route53_zone.catherine_science.zone_id}"
+    caa     = ["letsencrypt.org", "amazon.com"]
 }

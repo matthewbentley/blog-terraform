@@ -3,7 +3,12 @@ variable "domain" {}
 variable "zone_id" {}
 
 variable "caa" {
-    default = "amazon.com"
+    type = "list"
+    default = ["amazon.com"]
+}
+
+variable "caa_email" {
+    default = "caa@matthew.bentley.link"
 }
 
 resource "aws_route53_record" "mx" {
@@ -150,11 +155,20 @@ resource "aws_route53_record" "submission" {
     records = ["0 1 587 smtp.fastmail.com"]
 }
 
-resource "aws_route53_record" "caa_amazon" {
+resource "null_resource" "caas" {
+    count = "${length(var.caa)}"
+
+    triggers = {
+        caa = "0 issue \"${element(var.caa, count.index)}\""
+        caa_wild = "0 issuewild \"${element(var.caa, count.index)}\""
+    }
+}
+
+resource "aws_route53_record" "caa" {
     zone_id = "${var.zone_id}"
     name    = "${var.domain}"
     type    = "CAA"
     ttl     = "300"
 
-    records = ["0 issue \"${var.caa}\""]
+    records = ["${concat(null_resource.caas.*.triggers.caa, null_resource.caas.*.triggers.caa_wild, list("0 iodef \"mailto:${var.caa_email}\""))}"]
 }
