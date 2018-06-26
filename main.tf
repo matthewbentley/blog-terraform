@@ -1,35 +1,3 @@
-resource "aws_s3_bucket" "lambda_code" {
-  bucket_prefix = "lambda-code-"
-  acl           = "private"
-
-  versioning {
-    enabled = true
-  }
-
-  logging {
-    target_bucket = "${aws_s3_bucket.logs.id}"
-    target_prefix = "s3-code/"
-  }
-}
-
-resource "aws_s3_bucket_object" "add_resp_headers_code" {
-  bucket = "${aws_s3_bucket.lambda_code.id}"
-  key    = "add-resp-headers.zip"
-  source = "../blog-lambda/add-resp-headers.zip"
-  etag   = "${md5(file("../blog-lambda/add-resp-headers.zip"))}"
-}
-
-resource "aws_lambda_function" "add_resp_headers" {
-  function_name     = "add-resp-headers-test"
-  s3_bucket         = "${aws_s3_bucket.lambda_code.id}"
-  s3_key            = "${aws_s3_bucket_object.add_resp_headers_code.id}"
-  s3_object_version = "${aws_s3_bucket_object.add_resp_headers_code.version_id}"
-  role              = "arn:aws:iam::822323900684:role/service-role/bentley-link-lambda-headers"
-  handler           = "index.handler"
-  runtime           = "nodejs6.10"
-  publish           = true
-}
-
 resource "aws_route53_zone" "bentley_link" {
   name = "bentley.link"
 }
