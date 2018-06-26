@@ -14,6 +14,8 @@ variable "region" {}
 
 variable "lambda_functions" {
   type = "list"
+
+  default = []
 }
 
 resource "aws_s3_bucket" "site" {

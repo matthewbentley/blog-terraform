@@ -38,6 +38,14 @@ resource "namecheap_ns" "bentley_blog" {
   servers = ["${aws_route53_zone.bentley_blog.name_servers}"]
 }
 
+module "blog_domain_catherine_science" "catherine_science" {
+  source     = "./blog_domain"
+  domain     = "catherine.science"
+  zone_id    = "${aws_route53_zone.catherine_science.zone_id}"
+  cf_zone_id = "${module.catherine_science.cf_distribution_zone_id}"
+  cf_name    = "${module.catherine_science.cf_distribution_domain_name}"
+}
+
 module "blog_domain_bentley_blog" "bentley_blog" {
   source     = "./blog_domain"
   domain     = "bentley.blog"
@@ -64,10 +72,30 @@ data "aws_acm_certificate" "bentley_megacert" {
   domain = "bentley.link"
 }
 
+data "aws_acm_certificate" "catherine_science" {
+  domain = "catherine.science"
+}
+
 resource "aws_s3_bucket" "logs" {
   bucket_prefix = "logs-"
   region        = "us-east-1"
   acl           = "log-delivery-write"
+}
+
+module "catherine_science" {
+  source = "./site_domain"
+  name   = "catherine.science"
+
+  aliases = [
+    "catherine.science",
+    "www.catherine.science",
+  ]
+
+  cert                   = "${data.aws_acm_certificate.catherine_science.arn}"
+  log_bucket_id          = "${aws_s3_bucket.logs.id}"
+  log_bucket_domain_name = "${aws_s3_bucket.logs.bucket_domain_name}"
+
+  region = "us-east-1"
 }
 
 module "staging_bentley_blog" {
