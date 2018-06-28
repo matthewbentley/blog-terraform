@@ -253,6 +253,15 @@ resource "aws_route53_record" "kbp_mtb_wtf" {
   records = ["kbp.keybaseapi.com"]
 }
 
+resource "aws_route53_record" "bot_mtb_wtf" {
+  zone_id = "${aws_route53_zone.mtb_wtf.zone_id}"
+  name    = "bot.mtb.wtf"
+  type    = "CNAME"
+  ttl     = "300"
+
+  records = ["mtb.wtf"]
+}
+
 resource "aws_route53_record" "kbp_mtb_wtf_txt" {
   zone_id = "${aws_route53_zone.mtb_wtf.zone_id}"
   name    = "_keybase_pages.kbp.mtb.wtf"
