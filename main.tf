@@ -204,7 +204,7 @@ module "pgp_lol" {
   name   = "pgp.lol"
 
   aliases = [
-    "gpg.lol",
+    "pgp.lol",
     "www.pgp.lol",
     "wtf.pgp.lol",
   ]
