@@ -1,3 +1,5 @@
+# site_domain sets up everything but the dns for a blog site, served out of an
+#  s3 bucket
 variable "name" {}
 
 variable "aliases" {
