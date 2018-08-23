@@ -286,3 +286,19 @@ module "fastmail_domain_catherine_science" "catherine_science" {
   zone_id = "${aws_route53_zone.catherine_science.zone_id}"
   caa     = ["letsencrypt.org", "amazon.com"]
 }
+
+resource "aws_route53_zone" "pgp_lol" {
+  name = "pgp.lol"
+}
+
+resource "namecheap_ns" "pgp_lol" {
+  domain  = "pgp.lol"
+  servers = ["${aws_route53_zone.pgp_lol.name_servers}"]
+}
+
+module "fastmail_domain_pgp_lol" "pgp_lol" {
+  source  = "./fastmail_domain"
+  domain  = "pgp.lol"
+  zone_id = "${aws_route53_zone.pgp_lol.zone_id}"
+  caa     = ["letsencrypt.org", "amazon.com"]
+}
