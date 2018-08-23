@@ -72,14 +72,14 @@ data "aws_acm_certificate" "bentley_megacert" {
   domain = "bentley.link"
 }
 
-data "aws_acm_certificate" "catherine_science" {
-  domain = "catherine.science"
-}
-
 resource "aws_s3_bucket" "logs" {
   bucket_prefix = "logs-"
   region        = "us-east-1"
   acl           = "log-delivery-write"
+}
+
+data "aws_acm_certificate" "catherine_science" {
+  domain = "catherine.science"
 }
 
 module "catherine_science" {
@@ -185,4 +185,33 @@ module "fastmail_domain_pgp_lol" "pgp_lol" {
   domain  = "pgp.lol"
   zone_id = "${aws_route53_zone.pgp_lol.zone_id}"
   caa     = ["letsencrypt.org", "amazon.com"]
+}
+
+module "blog_domain_pgp_lol" "pgp_lol" {
+  source     = "./blog_domain"
+  domain     = "pgp.lol"
+  zone_id    = "${aws_route53_zone.pgp_lol.zone_id}"
+  cf_zone_id = "${module.pgp_lol.cf_distribution_zone_id}"
+  cf_name    = "${module.pgp_lol.cf_distribution_domain_name}"
+}
+
+data "aws_acm_certificate" "pgp_lol" {
+  domain = "pgp.lol"
+}
+
+module "pgp_lol" {
+  source = "./site_domain"
+  name   = "pgp.lol"
+
+  aliases = [
+    "gpg.lol",
+    "www.pgp.lol",
+    "wtf.pgp.lol",
+  ]
+
+  cert                   = "${data.aws_acm_certificate.pgp_lol.arn}"
+  log_bucket_id          = "${aws_s3_bucket.logs.id}"
+  log_bucket_domain_name = "${aws_s3_bucket.logs.bucket_domain_name}"
+
+  region = "us-east-1"
 }
