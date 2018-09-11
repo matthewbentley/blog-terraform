@@ -113,3 +113,21 @@ resource "aws_route53_record" "kbp_mtb_wtf_txt" {
 
   records = ["kbp=/keybase/private/bentley,kbpbot/my-site"]
 }
+
+resource "aws_route53_record" "mn_mtb_wtf_a" {
+  zone_id = "${aws_route53_zone.mtb_wtf.zone_id}"
+  name    = "mn.mtb.wtf"
+  type    = "A"
+  ttl     = "300"
+
+  records = ["165.227.222.166"]
+}
+
+resource "aws_route53_record" "mn_mtb_wtf_aaaa" {
+  zone_id = "${aws_route53_zone.mtb_wtf.zone_id}"
+  name    = "mn.mtb.wtf"
+  type    = "AAAA"
+  ttl     = "300"
+
+  records = ["2604:a880:800:a1::93d:e001"]
+}
