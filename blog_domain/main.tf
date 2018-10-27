@@ -1,5 +1,6 @@
 # blog_domain sets up the DNS for a blog site
 variable "cf_name" {}
+
 variable "cf_zone_id" {}
 variable "domain" {}
 variable "zone_id" {}

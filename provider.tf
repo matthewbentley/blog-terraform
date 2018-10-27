@@ -5,3 +5,5 @@ provider "aws" {
 provider "namecheap" {
   use_sandbox = false
 }
+
+provider "gandi" {}
