@@ -16,7 +16,7 @@ module "fastmail_domain_mtb_wtf" "mtb_wtf" {
 
 resource "gandi_zonerecord" "mtb_wtf_a" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "mtb.wtf"
+  name = "@"
   type = "A"
   ttl  = "300"
 
@@ -25,7 +25,7 @@ resource "gandi_zonerecord" "mtb_wtf_a" {
 
 resource "gandi_zonerecord" "mtb_wtf_aaaa" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "mtb.wtf"
+  name = "@"
   type = "AAAA"
   ttl  = "300"
 
@@ -34,99 +34,81 @@ resource "gandi_zonerecord" "mtb_wtf_aaaa" {
 
 resource "gandi_zonerecord" "mtb_wtf_icanhazip" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "icanhazip.mtb.wtf"
+  name = "icanhazip"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["mtb.wtf"]
+  values = ["mtb.wtf."]
 }
 
 resource "gandi_zonerecord" "mtb_wtf_icanhazproxy" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "icanhazproxy.mtb.wtf"
+  name = "icanhazproxy"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["mtb.wtf"]
+  values = ["mtb.wtf."]
 }
 
 resource "gandi_zonerecord" "mtb_wtf_icanhazepoch" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "icanhazepoch.mtb.wtf"
+  name = "icanhazepoch"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["mtb.wtf"]
+  values = ["mtb.wtf."]
 }
 
 resource "gandi_zonerecord" "mtb_wtf_icanhazptr" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "icanhazptr.mtb.wtf"
+  name = "icanhazptr"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["mtb.wtf"]
+  values = ["mtb.wtf."]
 }
 
 resource "gandi_zonerecord" "mtb_wtf_icanhaztrace" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "icanhaztrace.mtb.wtf"
+  name = "icanhaztrace"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["mtb.wtf"]
+  values = ["mtb.wtf."]
 }
 
 resource "gandi_zonerecord" "mtb_wtf_jump" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "jump.mtb.wtf"
+  name = "jump"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["people.acm.case.edu"]
+  values = ["people.acm.case.edu."]
 }
 
 resource "gandi_zonerecord" "kbp_mtb_wtf" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "kbp.mtb.wtf"
+  name = "kbp"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["kbp.keybaseapi.com"]
+  values = ["kbp.keybaseapi.com."]
 }
 
 resource "gandi_zonerecord" "bot_mtb_wtf" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "bot.mtb.wtf"
+  name = "bot"
   type = "CNAME"
   ttl  = "300"
 
-  values = ["mtb.wtf"]
+  values = ["mtb.wtf."]
 }
 
 resource "gandi_zonerecord" "kbp_mtb_wtf_txt" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "_keybase_pages.kbp.mtb.wtf"
+  name = "_keybase_pages.kbp"
   type = "TXT"
   ttl  = "300"
 
   values = ["\"kbp=/keybase/private/bentley,kbpbot/my-site\""]
-}
-
-resource "gandi_zonerecord" "mn_mtb_wtf_a" {
-  zone = "${gandi_zone.mtb_wtf.id}"
-  name = "mn.mtb.wtf"
-  type = "A"
-  ttl  = "300"
-
-  values = ["165.227.222.166"]
-}
-
-resource "gandi_zonerecord" "mn_mtb_wtf_aaaa" {
-  zone = "${gandi_zone.mtb_wtf.id}"
-  name = "mn.mtb.wtf"
-  type = "AAAA"
-  ttl  = "300"
-
-  values = ["2604:a880:800:a1::93d:e001"]
 }

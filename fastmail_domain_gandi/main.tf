@@ -3,35 +3,35 @@ variable "domain" {}
 variable "zone" {}
 
 variable "caa" {
-type    = "list"
-default = ["amazon.com"]
+  type    = "list"
+  default = ["amazon.com"]
 }
 
 variable "caa_email" {
-default = "caa@matthew.bentley.link"
+  default = "caa@matthew.bentley.link"
 }
 
 resource "gandi_zonerecord" "mx" {
-zone = "${var.zone}"
-name = "${var.domain}"
-type = "MX"
-ttl  = "300"
+  zone = "${var.zone}"
+  name = "@"
+  type = "MX"
+  ttl  = "300"
 
-values = ["10 in1-smtp.messagingengine.com.", "20 in2-smtp.messagingengine.com."]
+  values = ["10 in1-smtp.messagingengine.com.", "20 in2-smtp.messagingengine.com."]
 }
 
 resource "gandi_zonerecord" "txt" {
-zone = "${var.zone}"
-name = "${var.domain}"
-type = "TXT"
-ttl  = "300"
+  zone = "${var.zone}"
+  name = "@"
+  type = "TXT"
+  ttl  = "300"
 
-values = ["\"v=spf1 include:spf.messagingengine.com ?all\""]
+  values = ["\"v=spf1 include:spf.messagingengine.com ?all\""]
 }
 
 resource "gandi_zonerecord" "star_mx" {
   zone = "${var.zone}"
-  name = "*.${var.domain}"
+  name = "*"
   type = "MX"
   ttl  = "300"
 
@@ -40,7 +40,7 @@ resource "gandi_zonerecord" "star_mx" {
 
 resource "gandi_zonerecord" "fm1" {
   zone = "${var.zone}"
-  name = "fm1._domainkey.${var.domain}"
+  name = "fm1._domainkey"
   type = "CNAME"
   ttl  = "300"
 
@@ -49,7 +49,7 @@ resource "gandi_zonerecord" "fm1" {
 
 resource "gandi_zonerecord" "fm2" {
   zone = "${var.zone}"
-  name = "fm2._domainkey.${var.domain}"
+  name = "fm2._domainkey"
   type = "CNAME"
   ttl  = "300"
 
@@ -58,7 +58,7 @@ resource "gandi_zonerecord" "fm2" {
 
 resource "gandi_zonerecord" "fm3" {
   zone = "${var.zone}"
-  name = "fm3._domainkey.${var.domain}"
+  name = "fm3._domainkey"
   type = "CNAME"
   ttl  = "300"
 
@@ -67,7 +67,7 @@ resource "gandi_zonerecord" "fm3" {
 
 resource "gandi_zonerecord" "mesmtp" {
   zone = "${var.zone}"
-  name = "mesmtp._domainkey.${var.domain}"
+  name = "mesmtp._domainkey"
   type = "CNAME"
   ttl  = "300"
 
@@ -76,7 +76,7 @@ resource "gandi_zonerecord" "mesmtp" {
 
 resource "gandi_zonerecord" "caldav" {
   zone = "${var.zone}"
-  name = "_caldav._tcp.${var.domain}"
+  name = "_caldav._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -85,7 +85,7 @@ resource "gandi_zonerecord" "caldav" {
 
 resource "gandi_zonerecord" "caldavs" {
   zone = "${var.zone}"
-  name = "_caldavs._tcp.${var.domain}"
+  name = "_caldavs._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -94,7 +94,7 @@ resource "gandi_zonerecord" "caldavs" {
 
 resource "gandi_zonerecord" "carddav" {
   zone = "${var.zone}"
-  name = "_carddav._tcp.${var.domain}"
+  name = "_carddav._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -103,7 +103,7 @@ resource "gandi_zonerecord" "carddav" {
 
 resource "gandi_zonerecord" "carddavs" {
   zone = "${var.zone}"
-  name = "_carddavs._tcp.${var.domain}"
+  name = "_carddavs._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -112,7 +112,7 @@ resource "gandi_zonerecord" "carddavs" {
 
 resource "gandi_zonerecord" "imap" {
   zone = "${var.zone}"
-  name = "_imap._tcp.${var.domain}"
+  name = "_imap._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -121,7 +121,7 @@ resource "gandi_zonerecord" "imap" {
 
 resource "gandi_zonerecord" "imaps" {
   zone = "${var.zone}"
-  name = "_imaps._tcp.${var.domain}"
+  name = "_imaps._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -130,7 +130,7 @@ resource "gandi_zonerecord" "imaps" {
 
 resource "gandi_zonerecord" "pop3" {
   zone = "${var.zone}"
-  name = "_pop3._tcp.${var.domain}"
+  name = "_pop3._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -139,7 +139,7 @@ resource "gandi_zonerecord" "pop3" {
 
 resource "gandi_zonerecord" "pop3s" {
   zone = "${var.zone}"
-  name = "_pop3s._tcp.${var.domain}"
+  name = "_pop3s._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -148,7 +148,7 @@ resource "gandi_zonerecord" "pop3s" {
 
 resource "gandi_zonerecord" "submission" {
   zone = "${var.zone}"
-  name = "_submission._tcp.${var.domain}"
+  name = "_submission._tcp"
   type = "SRV"
   ttl  = "300"
 
@@ -166,7 +166,7 @@ resource "null_resource" "caas" {
 
 resource "gandi_zonerecord" "caa" {
   zone = "${var.zone}"
-  name = "${var.domain}"
+  name = "@"
   type = "CAA"
   ttl  = "300"
 
