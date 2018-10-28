@@ -121,3 +121,12 @@ resource "gandi_zonerecord" "bsd_mtb_wtf_a" {
 
   values = ["104.248.4.245"]
 }
+
+resource "gandi_zonerecord" "ns1_mtb_wtf_a" {
+  zone = "${gandi_zone.mtb_wtf.id}"
+  name = "bsd"
+  type = "A"
+  ttl  = "300"
+
+  values = ["104.248.4.245"]
+}
