@@ -112,3 +112,12 @@ resource "gandi_zonerecord" "kbp_mtb_wtf_txt" {
 
   values = ["\"kbp=/keybase/private/bentley,kbpbot/my-site\""]
 }
+
+resource "gandi_zonerecord" "bsd_mtb_wtf_a" {
+  zone = "${gandi_zone.mtb_wtf.id}"
+  name = "bsd"
+  type = "A"
+  ttl  = "300"
+
+  values = ["104.248.4.245"]
+}
