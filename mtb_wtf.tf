@@ -124,7 +124,7 @@ resource "gandi_zonerecord" "bsd_mtb_wtf_a" {
 
 resource "gandi_zonerecord" "ns1_mtb_wtf_a" {
   zone = "${gandi_zone.mtb_wtf.id}"
-  name = "bsd"
+  name = "ns1"
   type = "A"
   ttl  = "300"
 
