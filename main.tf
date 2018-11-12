@@ -78,6 +78,20 @@ resource "aws_s3_bucket" "logs" {
   acl           = "log-delivery-write"
 }
 
+resource "aws_s3_bucket" "remote-state" {
+  bucket = "bentley-remote-state"
+  region = "us-east-1"
+
+  versioning {
+    enabled = true
+  }
+
+  logging {
+    target_bucket = "${aws_s3_bucket.logs.id}"
+    target_prefix = "tf_log/"
+  }
+}
+
 data "aws_acm_certificate" "catherine_science" {
   domain = "catherine.science"
 }
