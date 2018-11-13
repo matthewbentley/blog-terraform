@@ -26,7 +26,7 @@ resource "gandi_zonerecord" "txt" {
   type = "TXT"
   ttl  = "300"
 
-  values = ["\"v=spf1 include:spf.messagingengine.com ?all\""]
+  values = ["\"v=spf1 include:spf.messagingengine.com -all\""]
 }
 
 resource "gandi_zonerecord" "star_mx" {
@@ -162,6 +162,15 @@ resource "null_resource" "caas" {
     caa      = "0 issue \"${element(var.caa, count.index)}\""
     caa_wild = "0 issuewild \"${element(var.caa, count.index)}\""
   }
+}
+
+resource "gandi_zonerecord" "dmarc" {
+  zone = "${var.zone}"
+  name = "_DMARC"
+  type = "TXT"
+  ttl  = "300"
+
+  values = ["\"v=DMARC1; p=none; rua=mailto:dmarc@matthew.bentley.link; ruf=mailto:dmarc@matthew.bentley.link; fo=1\""]
 }
 
 resource "gandi_zonerecord" "caa" {

@@ -202,3 +202,15 @@ resource "gandi_zonerecord" "mtb_wtf_sshfp" {
     "4 2 f078cd5d5c87b59748729fec00a3653f4639d62df79050bbdafa970bcbcc6b7a"
   ]
 }
+
+resource "gandi_zonerecord" "mtb_wtf_tlsa" {
+  zone = "${gandi_zone.mtb_wtf.id}"
+  name = "_443._tcp"
+  type = "TLSA"
+  ttl  = "300"
+
+  values = [
+    "3 1 1 94349adc8c7777acd633af54636b83402e46fe73265cd37b1896f5c9465b28d0",
+    "0 1 1 60b87575447dcba2a36b7d11ac09fb24a9db406fee12d2cc90180517616e8a18",
+  ]
+}
