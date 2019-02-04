@@ -167,6 +167,24 @@ resource "gandi_zonerecord" "mn_mtb_wtf_aaaa" {
   values = ["2604:a880:800:a1::c15:1001"]
 }
 
+resource "gandi_zonerecord" "1850_mtb_wtf_a" {
+  zone = "${gandi_zone.mtb_wtf.id}"
+  name = "1850.local"
+  type = "A"
+  ttl  = "300"
+
+  values = ["73.202.243.1"]
+}
+
+resource "gandi_zonerecord" "1850_mtb_wtf_aaaa" {
+  zone = "${gandi_zone.mtb_wtf.id}"
+  name = "1850.local"
+  type = "AAAA"
+  ttl  = "300"
+
+  values = ["2601:646:4102:10:200:ff:fe00:0"]
+}
+
 resource "gandi_zonerecord" "mn_mtb_wtf_sshfp" {
   zone = "${gandi_zone.mtb_wtf.id}"
   name = "mn"
