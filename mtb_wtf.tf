@@ -113,15 +113,6 @@ resource "gandi_zonerecord" "kbp_mtb_wtf_txt" {
   values = ["\"kbp=/keybase/private/bentley,kbpbot/my-site\""]
 }
 
-resource "gandi_zonerecord" "bsd_mtb_wtf_a" {
-  zone = "${gandi_zone.mtb_wtf.id}"
-  name = "bsd"
-  type = "A"
-  ttl  = "300"
-
-  values = ["104.248.4.245"]
-}
-
 resource "gandi_zonerecord" "ns1_mtb_wtf_a" {
   zone = "${gandi_zone.mtb_wtf.id}"
   name = "ns1"
@@ -129,24 +120,6 @@ resource "gandi_zonerecord" "ns1_mtb_wtf_a" {
   ttl  = "300"
 
   values = ["104.248.4.245"]
-}
-
-resource "gandi_zonerecord" "bsd_mtb_wtf_sshfp" {
-  zone = "${gandi_zone.mtb_wtf.id}"
-  name = "bsd"
-  type = "SSHFP"
-  ttl  = "300"
-
-  values = [
-    "1 1 c18a005374e423e57d4f3fbc261934860607561a",
-    "1 2 1f70f21e53771c5f4f9f8833a2073f8aadee590528603127a5e046fa0a6707a8",
-    "2 1 358a186ae26441ad349170ce6847104bc09fbc04",
-    "2 2 3fdf175370355a506d68f19100f1c18768e3bb37ce1d94a192ee46d5ba32b65e",
-    "3 1 7ad76cbae37445f87e15d0b37da106b6f4c96093",
-    "3 2 07a512648d5e2c286846106cd80020b071034d6bf6b39adae3e2bf33deb4fb25",
-    "4 1 d2e44ab1655fc2ba070035b0ac5ec514defa06b6",
-    "4 2 7ca1e12c57485384f1988c3d33bf4fa64b69168bb4853152ca91f8e28b435539"
-  ]
 }
 
 resource "gandi_zonerecord" "mn_mtb_wtf_a" {
