@@ -228,6 +228,13 @@ module "pgp_lol" {
   log_bucket_id          = "${aws_s3_bucket.logs.id}"
   log_bucket_domain_name = "${aws_s3_bucket.logs.bucket_domain_name}"
 
+  lambda_functions = [
+    {
+      event_type = "viewer-response"
+      lambda_arn = "arn:aws:lambda:us-east-1:822323900684:function:add-resp-headers:14"
+    },
+  ]
+
   region = "us-east-1"
 }
 
