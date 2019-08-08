@@ -106,7 +106,13 @@ resource "aws_cloudfront_distribution" "site" {
     default_ttl            = 300
     max_ttl                = 1500
 
-    lambda_function_association = ["${var.lambda_functions}"]
+    dynamic "lambda_function_association" {
+      for_each = var.lambda_functions
+      content {
+        event_type = lambda_function_association.value.event_type
+        lambda_arn = lambda_function_association.value.lambda_arn
+      }
+    }
   }
 
   price_class = "PriceClass_All"

@@ -7,7 +7,7 @@ resource "gandi_domainattachment" "mtb_wtf" {
   zone   = "${gandi_zone.mtb_wtf.id}"
 }
 
-module "fastmail_domain_mtb_wtf" "mtb_wtf" {
+module "fastmail_domain_mtb_wtf" {
   source = "./fastmail_domain_gandi"
   domain = "mtb.wtf"
   zone   = "${gandi_zone.mtb_wtf.id}"
@@ -140,7 +140,7 @@ resource "gandi_zonerecord" "mn_mtb_wtf_aaaa" {
   values = ["2604:a880:800:a1::c15:1001"]
 }
 
-resource "gandi_zonerecord" "1850_mtb_wtf_a" {
+resource "gandi_zonerecord" "apt_mtb_wtf_a" {
   zone = "${gandi_zone.mtb_wtf.id}"
   name = "1850.local"
   type = "A"
@@ -149,7 +149,7 @@ resource "gandi_zonerecord" "1850_mtb_wtf_a" {
   values = ["73.202.243.1"]
 }
 
-resource "gandi_zonerecord" "1850_mtb_wtf_aaaa" {
+resource "gandi_zonerecord" "apt_mtb_wtf_aaaa" {
   zone = "${gandi_zone.mtb_wtf.id}"
   name = "1850.local"
   type = "AAAA"

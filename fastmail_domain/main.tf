@@ -170,5 +170,5 @@ resource "aws_route53_record" "caa" {
   type    = "CAA"
   ttl     = "300"
 
-  records = ["${concat(null_resource.caas.*.triggers.caa, null_resource.caas.*.triggers.caa_wild, list("0 iodef \"mailto:${var.caa_email}\""))}"]
+  records = concat(null_resource.caas.*.triggers.caa, null_resource.caas.*.triggers.caa_wild, list("0 iodef \"mailto:${var.caa_email}\""))
 }

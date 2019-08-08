@@ -179,5 +179,5 @@ resource "gandi_zonerecord" "caa" {
   type = "CAA"
   ttl  = "300"
 
-  values = ["${concat(null_resource.caas.*.triggers.caa, null_resource.caas.*.triggers.caa_wild, list("0 iodef \"mailto:${var.caa_email}\""))}"]
+  values = concat(null_resource.caas.*.triggers.caa, null_resource.caas.*.triggers.caa_wild, list("0 iodef \"mailto:${var.caa_email}\""))
 }

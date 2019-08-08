@@ -4,10 +4,10 @@ resource "aws_route53_zone" "bentley_link" {
 
 resource "namecheap_ns" "bentley_link" {
   domain  = "bentley.link"
-  servers = ["${aws_route53_zone.bentley_link.name_servers}"]
+  servers = aws_route53_zone.bentley_link.name_servers
 }
 
-module "blog_domain_bentley_link" "bentley_link" {
+module "blog_domain_bentley_link" {
   source     = "./blog_domain"
   domain     = "bentley.link"
   zone_id    = "${aws_route53_zone.bentley_link.zone_id}"
@@ -15,7 +15,7 @@ module "blog_domain_bentley_link" "bentley_link" {
   cf_name    = "${module.bentley_blog.cf_distribution_domain_name}"
 }
 
-module "blog_domain_staging_bentley_link" "staging_bentley_link" {
+module "blog_domain_staging_bentley_link" {
   source     = "./blog_domain"
   domain     = "staging.bentley.link"
   zone_id    = "${aws_route53_zone.bentley_link.zone_id}"
@@ -23,7 +23,7 @@ module "blog_domain_staging_bentley_link" "staging_bentley_link" {
   cf_name    = "${module.staging_bentley_blog.cf_distribution_domain_name}"
 }
 
-module "fastmail_domain_bentley_link" "bentley_link" {
+module "fastmail_domain_bentley_link" {
   source  = "./fastmail_domain"
   domain  = "bentley.link"
   zone_id = "${aws_route53_zone.bentley_link.zone_id}"
@@ -35,10 +35,10 @@ resource "aws_route53_zone" "bentley_blog" {
 
 resource "namecheap_ns" "bentley_blog" {
   domain  = "bentley.blog"
-  servers = ["${aws_route53_zone.bentley_blog.name_servers}"]
+  servers = aws_route53_zone.bentley_blog.name_servers
 }
 
-module "blog_domain_catherine_science" "catherine_science" {
+module "blog_domain_catherine_science" {
   source     = "./blog_domain"
   domain     = "catherine.science"
   zone_id    = "${aws_route53_zone.catherine_science.zone_id}"
@@ -46,7 +46,7 @@ module "blog_domain_catherine_science" "catherine_science" {
   cf_name    = "${module.catherine_science.cf_distribution_domain_name}"
 }
 
-module "blog_domain_bentley_blog" "bentley_blog" {
+module "blog_domain_bentley_blog" {
   source     = "./blog_domain"
   domain     = "bentley.blog"
   zone_id    = "${aws_route53_zone.bentley_blog.zone_id}"
@@ -54,7 +54,7 @@ module "blog_domain_bentley_blog" "bentley_blog" {
   cf_name    = "${module.bentley_blog.cf_distribution_domain_name}"
 }
 
-module "blog_domain_staging_bentley_blog" "staging_bentley_blog" {
+module "blog_domain_staging_bentley_blog" {
   source     = "./blog_domain"
   domain     = "staging.bentley.blog"
   zone_id    = "${aws_route53_zone.bentley_blog.zone_id}"
@@ -62,7 +62,7 @@ module "blog_domain_staging_bentley_blog" "staging_bentley_blog" {
   cf_name    = "${module.staging_bentley_blog.cf_distribution_domain_name}"
 }
 
-module "fastmail_domain_bentley_blog" "bentley_blog" {
+module "fastmail_domain_bentley_blog" {
   source  = "./fastmail_domain"
   domain  = "bentley.blog"
   zone_id = "${aws_route53_zone.bentley_blog.zone_id}"
@@ -176,10 +176,10 @@ resource "aws_route53_zone" "catherine_science" {
 
 resource "namecheap_ns" "catherine_science" {
   domain  = "catherine.science"
-  servers = ["${aws_route53_zone.catherine_science.name_servers}"]
+  servers = aws_route53_zone.catherine_science.name_servers
 }
 
-module "fastmail_domain_catherine_science" "catherine_science" {
+module "fastmail_domain_catherine_science" {
   source  = "./fastmail_domain"
   domain  = "catherine.science"
   zone_id = "${aws_route53_zone.catherine_science.zone_id}"
@@ -192,17 +192,17 @@ resource "aws_route53_zone" "pgp_lol" {
 
 resource "namecheap_ns" "pgp_lol" {
   domain  = "pgp.lol"
-  servers = ["${aws_route53_zone.pgp_lol.name_servers}"]
+  servers = aws_route53_zone.pgp_lol.name_servers
 }
 
-module "fastmail_domain_pgp_lol" "pgp_lol" {
+module "fastmail_domain_pgp_lol" {
   source  = "./fastmail_domain"
   domain  = "pgp.lol"
   zone_id = "${aws_route53_zone.pgp_lol.zone_id}"
   caa     = ["letsencrypt.org", "amazon.com"]
 }
 
-module "blog_domain_pgp_lol" "pgp_lol" {
+module "blog_domain_pgp_lol" {
   source     = "./blog_domain"
   domain     = "pgp.lol"
   zone_id    = "${aws_route53_zone.pgp_lol.zone_id}"
