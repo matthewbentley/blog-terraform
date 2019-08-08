@@ -11,6 +11,10 @@ variable "caa_email" {
   default = "caa@matthew.bentley.link"
 }
 
+variable "dmarc_email" {
+  default = "dmarc@matthew.bentley.link"
+}
+
 resource "gandi_zonerecord" "mx" {
   zone = "${var.zone}"
   name = "@"
@@ -170,7 +174,7 @@ resource "gandi_zonerecord" "dmarc" {
   type = "TXT"
   ttl  = "300"
 
-  values = ["\"v=DMARC1; p=none; rua=mailto:dmarc@matthew.bentley.link; ruf=mailto:dmarc@matthew.bentley.link; fo=1\""]
+  values = ["\"v=DMARC1; p=none; rua=mailto:${var.dmarc_email}; ruf=mailto:${var.dmarc_email}; fo=1\""]
 }
 
 resource "gandi_zonerecord" "caa" {
